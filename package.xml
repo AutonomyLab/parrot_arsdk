@@ -3,14 +3,13 @@
   <name>parrot_arsdk</name>
   <version>3.9.1</version>
   <description>Catkin wrapper for the official ARSDK from Parrot</description>
+  <author email="unknow@parrot.com">Parrot S.A.</author>
 
   <maintainer email="mmonajje@sfu.ca">Mani Monajjemi</maintainer>
   <license>BSD</license>
 
   <url type="website">http://wiki.ros.org/parrot_arsdk</url>
   <url type="repository">https://github.com/AutonomyLab/parrot_arsdk</url>
-
-  <author email="unknow@parrot.com">Parrot S.A.</author>
 
   <buildtool_depend>catkin</buildtool_depend>
 
