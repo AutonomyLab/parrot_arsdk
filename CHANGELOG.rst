@@ -2,7 +2,7 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
--Forthcoming
+3.9.1 (2016-06-10)
 ------------------
 * Parrot ARSDK 3.9 Changes
   * New commands:
