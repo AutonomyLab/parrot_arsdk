@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>parrot_arsdk</name>
-  <version>3.9.1</version>
+  <version>3.9.0</version>
   <description>Catkin wrapper for the official ARSDK from Parrot</description>
   <author email="unknow@parrot.com">Parrot S.A.</author>
 

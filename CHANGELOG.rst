@@ -2,8 +2,8 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+-Forthcoming
+------------------
 * Parrot ARSDK 3.9 Changes
   * New commands:
     * Bebop and Bebop 2:
@@ -20,11 +20,11 @@ Forthcoming
   * For Android: ./build.sh -p arsdk-android -t build-sdk -j
   * For Unix: ./build.sh -p arsdk-native -t build-sdk -j
   * New outputs directory:
-      * For iOS: <SDK>/arsdk-ios
-      * For iOS Simulator: <SDK>/arsdk-ios_sim
-      * For Android: <SDK>/arsdk-android
-      * For Unix: <SDK>/arsdk-native But old output are kept (with simlinks to avoid breaking compatibility).
-      * libARController Android bug fix (a big thanks to Synman :+1: )
+    * For iOS: <SDK>/arsdk-ios
+    * For iOS Simulator: <SDK>/arsdk-ios_sim
+    * For Android: <SDK>/arsdk-android
+    * For Unix: <SDK>/arsdk-native But old output are kept (with simlinks to avoid breaking compatibility).
+    * libARController Android bug fix (a big thanks to Synman :+1: )
   * Video decoding bug fix in the iOS Sample (a big thanks to ar.tommy and ka010 :+1: )
   * Other bug fixes
 * parrot_arsdk Changes
