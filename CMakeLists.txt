@@ -21,14 +21,13 @@ add_custom_target(ARSDK_MKDIR
   COMMAND ${CMAKE_COMMAND} -E make_directory ${ARDRONESDK3_DEVEL_PATH})
 
 add_custom_target(ARSDKBuildUtils ALL
-  COMMENT "Building Parrot ARDroneSDK3 @ ${ARSDK_MANIFEST_HASG}"
+  COMMENT "Building Parrot ARDroneSDK3 @ ${ARSDK_MANIFEST_HASH}"
   WORKING_DIRECTORY ${ARDRONESDK3_DEVEL_PATH}
   COMMAND curl -s https://storage.googleapis.com/git-repo-downloads/repo > ./repo
   COMMAND chmod a+x ./repo
   COMMAND echo "y" | ./repo init -u https://github.com/Parrot-Developers/arsdk_manifests.git -b ${ARSDK_MANIFEST_HASH} -m release.xml
   COMMAND ./repo sync
-  # TODO
-  COMMAND ./build.sh -p arsdk-native -t build-sdk -j || xterm -e ./build.sh -p arsdk-native -t build-sdk -j
+  COMMAND ./build.sh -p arsdk-native -t build-sdk -j
   # Populate the build results into the devel space
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}
   COMMAND cp -rp ./out/Unix-base/staging/usr/include/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}
