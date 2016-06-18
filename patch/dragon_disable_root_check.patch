@@ -1,0 +1,13 @@
+diff --git a/build.py b/build.py
+index 5f5cc30..0765c2e 100755
+--- a/build.py
++++ b/build.py
+@@ -592,7 +592,7 @@ def main():
+ 
+     if os.geteuid() == 0:
+         dragon.LOGE("Please do not run this script as root.")
+-        sys.exit(1)
++        # sys.exit(1)
+ 
+     # Print help now if requested and no other argument given, otherwise see
+     # below if help is requested on a task

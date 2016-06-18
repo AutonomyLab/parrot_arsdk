@@ -11,7 +11,9 @@ catkin_package(
 ## Build ##
 ###########
 
-set(ARDRONESDK3_DEVEL_PATH ${CATKIN_DEVEL_PREFIX}/arsdk)
+# use the build space for downloading/building the package
+# we populate the results to devel/install spaces after the build
+set(ARDRONESDK3_DEVEL_PATH ${CMAKE_CURRENT_BINARY_DIR}/arsdk)
 set(ARDRONESDK3_PATH ${ARDRONESDK3_DEVEL_PATH}/out/arsdk-native/staging/usr/)
 
 # 3.9.1
@@ -27,6 +29,8 @@ add_custom_target(ARSDKBuildUtils ALL
   COMMAND chmod a+x ./repo
   COMMAND echo "y" | ./repo init -u https://github.com/Parrot-Developers/arsdk_manifests.git -b ${ARSDK_MANIFEST_HASH} -m release.xml
   COMMAND ./repo sync
+  # Patch dragon_build to enable build as root
+  COMMAND cd ${ARDRONESDK3_DEVEL_PATH}/build/dragon_build && git reset --hard && git apply ${PROJECT_SOURCE_DIR}/patch/dragon_disable_root_check.patch
   COMMAND ./build.sh -p arsdk-native -t build-sdk -j
   # Populate the build results into the devel space
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}
@@ -35,8 +39,8 @@ add_custom_target(ARSDKBuildUtils ALL
   COMMAND cp -rp ./out/Unix-base/staging/usr/lib/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/${PROJECT_NAME}
   COMMAND cp -rp ./out/Unix-base/staging/usr/share/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/${PROJECT_NAME}
-  COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/${PROJECT_NAME}
-  COMMAND cp -rp ./out/Unix-base/staging/usr/bin/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/${PROJECT_NAME}
+  #COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/${PROJECT_NAME}
+  #COMMAND cp -rp ./out/Unix-base/staging/usr/bin/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/${PROJECT_NAME}
 )
 add_dependencies(ARSDKBuildUtils ARSDK_MKDIR)
 
@@ -44,9 +48,10 @@ add_dependencies(ARSDKBuildUtils ARSDK_MKDIR)
 ## Install ##
 #############
 
-install(DIRECTORY ${ARDRONESDK3_PATH}/bin/
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
+#install(DIRECTORY ${ARDRONESDK3_PATH}/bin/
+#  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+#  USE_SOURCE_PERMISSIONS
+#)
 
 install(DIRECTORY ${ARDRONESDK3_PATH}/include/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
