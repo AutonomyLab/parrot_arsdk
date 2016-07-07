@@ -31,7 +31,8 @@ add_custom_target(ARSDKBuildUtils ALL
   COMMAND ./repo sync
   # Patch dragon_build to enable build as root
   COMMAND cd ${ARDRONESDK3_DEVEL_PATH}/build/dragon_build && git reset --hard && git apply ${PROJECT_SOURCE_DIR}/patch/dragon_disable_root_check.patch
-  COMMAND ./build.sh -p arsdk-native -t build-sdk -j
+  # Setting TARGET_OS_FLAVOUR is experimental. The idea is to trick the build script to always pass the correct arch flags to all of underlying build scripts. This is useful when building the sdk for i386 targets inside a docker container which is running on a x86_64 host.
+  COMMAND TARGET_OS_FLAVOUR=native-chroot ./build.sh -p arsdk-native -t build-sdk -j --no-color
   # Populate the build results into the devel space
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}
   COMMAND cp -rp ./out/Unix-base/staging/usr/include/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}
