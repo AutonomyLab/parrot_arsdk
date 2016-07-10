@@ -14,25 +14,30 @@ catkin_package(
 # use the build space for downloading/building the package
 # we populate the results to devel/install spaces after the build
 set(ARDRONESDK3_DEVEL_PATH ${CMAKE_CURRENT_BINARY_DIR}/arsdk)
-set(ARDRONESDK3_PATH ${ARDRONESDK3_DEVEL_PATH}/out/arsdk-native/staging/usr/)
+set(ARDRONESDK3_PATH ${ARDRONESDK3_DEVEL_PATH}/src/ARSDKBuildUtils/out/arsdk-native/staging/usr)
 
 # 3.9.1
-set(ARSDK_MANIFEST_HASH 40d5d08ff37a43b0b2deb641cc899d5356163db7)
+set(ARSDK_ARCHIVE arsdk_3_9_1_stripped.tgz)
 
 add_custom_target(ARSDK_MKDIR
   COMMAND ${CMAKE_COMMAND} -E make_directory ${ARDRONESDK3_DEVEL_PATH})
 
-add_custom_target(ARSDKBuildUtils ALL
-  COMMENT "Building Parrot ARDroneSDK3 @ ${ARSDK_MANIFEST_HASH}"
-  WORKING_DIRECTORY ${ARDRONESDK3_DEVEL_PATH}
-  COMMAND curl -s https://storage.googleapis.com/git-repo-downloads/repo > ./repo
-  COMMAND chmod a+x ./repo
-  COMMAND echo "y" | ./repo init -u https://github.com/Parrot-Developers/arsdk_manifests.git -b ${ARSDK_MANIFEST_HASH} -m release.xml
-  COMMAND ./repo sync
-  # Patch dragon_build to enable build as root
-  COMMAND cd ${ARDRONESDK3_DEVEL_PATH}/build/dragon_build && git reset --hard && git apply ${PROJECT_SOURCE_DIR}/patch/dragon_disable_root_check.patch
-  # Setting TARGET_OS_FLAVOUR is experimental. The idea is to trick the build script to always pass the correct arch flags to all of underlying build scripts. This is useful when building the sdk for i386 targets inside a docker container which is running on a x86_64 host.
-  COMMAND TARGET_OS_FLAVOUR=native-chroot ./build.sh -p arsdk-native -t build-sdk -j --no-color
+include(ExternalProject)
+ExternalProject_Add(ARSDKBuildUtils
+    DEPENDS ARSDK_MKDIR
+    URL ${PROJECT_SOURCE_DIR}/sdk/${ARSDK_ARCHIVE}
+    URL_MD5 259678e3b9fe4e097fd12f6925fee646
+    PREFIX ${ARDRONESDK3_DEVEL_PATH}
+    CONFIGURE_COMMAND echo "No configure"
+    # Setting TARGET_OS_FLAVOUR is experimental. The idea is to trick the build script to always pass the correct arch flags to all of underlying build scripts. This is useful when building the sdk for i386 targets inside a docker container which is running on a x86_64 host.
+    BUILD_COMMAND TARGET_OS_FLAVOUR=native-chroot ./build.sh -p arsdk-native -t build-sdk -j --no-color
+    INSTALL_COMMAND echo "No SDK install command"
+    BUILD_IN_SOURCE 1
+)
+
+add_custom_target(ARSDKPopulate ALL
+  COMMENT "Populating ARDroneSDK to devel space: ${ARDRONESDK3_DEVEL_PATH}"
+  WORKING_DIRECTORY ${ARDRONESDK3_DEVEL_PATH}/src/ARSDKBuildUtils
   # Populate the build results into the devel space
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}
   COMMAND cp -rp ./out/Unix-base/staging/usr/include/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}
@@ -43,7 +48,7 @@ add_custom_target(ARSDKBuildUtils ALL
   #COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/${PROJECT_NAME}
   #COMMAND cp -rp ./out/Unix-base/staging/usr/bin/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/${PROJECT_NAME}
 )
-add_dependencies(ARSDKBuildUtils ARSDK_MKDIR)
+add_dependencies(ARSDKPopulate ARSDKBuildUtils)
 
 #############
 ## Install ##
