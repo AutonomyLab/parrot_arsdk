@@ -13,8 +13,6 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <build_depend>git</build_depend>
-  <build_depend>wget</build_depend>
   <build_depend>automake</build_depend>
   <build_depend>autoconf</build_depend>
   <build_depend>libtool</build_depend>

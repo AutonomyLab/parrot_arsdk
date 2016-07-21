@@ -20,6 +20,7 @@ echo "y" | ./repo init -u https://github.com/Parrot-Developers/arsdk_manifests.g
 
 echo "Applying patches ..."
 cd ${TMP_WS}/build/dragon_build && git reset --hard && git apply ${CURRENT_DIR}/patch/dragon_disable_root_check.patch
+cd ${TMP_WS}/build/alchemy && git reset --hard && git apply ${CURRENT_DIR}/patch/alchemy_conditional_sse.patch
 cd $TMP_WS
 
 mv packages packages.git
