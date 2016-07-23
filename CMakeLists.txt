@@ -16,8 +16,12 @@ catkin_package(
 set(ARDRONESDK3_DEVEL_PATH ${CMAKE_CURRENT_BINARY_DIR}/arsdk)
 set(ARDRONESDK3_PATH ${ARDRONESDK3_DEVEL_PATH}/src/ARSDKBuildUtils/out/arsdk-native/staging/usr)
 
-# 3.9.1
-set(ARSDK_ARCHIVE arsdk_3_9_1_stripped.tgz)
+# 3.9.1 patch 2
+set(ARSDK_ARCHIVE arsdk_3_9_1_p2_stripped.tgz)
+
+# Determine the architecure of the host in a robust way
+execute_process(COMMAND python ${PROJECT_SOURCE_DIR}/script/get_arch.py OUTPUT_VARIABLE BUILD_HOST_ARCH)
+message(STATUS "Host architecure: ${BUILD_HOST_ARCH}")
 
 add_custom_target(ARSDK_MKDIR
   COMMAND ${CMAKE_COMMAND} -E make_directory ${ARDRONESDK3_DEVEL_PATH})
@@ -26,11 +30,11 @@ include(ExternalProject)
 ExternalProject_Add(ARSDKBuildUtils
     DEPENDS ARSDK_MKDIR
     URL ${PROJECT_SOURCE_DIR}/sdk/${ARSDK_ARCHIVE}
-    URL_MD5 259678e3b9fe4e097fd12f6925fee646
+    URL_MD5 b0e8347e1cc2a605436cf39df6d0598c
     PREFIX ${ARDRONESDK3_DEVEL_PATH}
     CONFIGURE_COMMAND echo "No configure"
     # Setting TARGET_OS_FLAVOUR is experimental. The idea is to trick the build script to always pass the correct arch flags to all of underlying build scripts. This is useful when building the sdk for i386 targets inside a docker container which is running on a x86_64 host.
-    BUILD_COMMAND TARGET_OS_FLAVOUR=native-chroot ./build.sh -p arsdk-native -t build-sdk -j --no-color
+    BUILD_COMMAND TARGET_OS_FLAVOUR=native-chroot TARGET_ARCH=${BUILD_HOST_ARCH} ./build.sh -p arsdk-native -t build-sdk -j --no-color
     INSTALL_COMMAND echo "No SDK install command"
     BUILD_IN_SOURCE 1
 )
