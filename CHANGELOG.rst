@@ -2,7 +2,7 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.9.1 (2016-06-10)
+3.9.1 (2016-07-25)
 ------------------
 * Parrot ARSDK 3.9 Changes
     * New commands:
@@ -34,4 +34,7 @@ Changelog for package parrot_arsdk
         * Include a stripped tarball of the SDK
         * SDK Version: 3.9.1
         * Populate both devel and install spaces
+    * Add a patch to disable non-x86 compilation flags for arm platform from
+    * Add a script to determine the host arch robustly. This script is used
+      by CMake to pass appropriate flags to build_sdk.py
     * Contributors: Mani Monajjemi
