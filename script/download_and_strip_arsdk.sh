@@ -2,12 +2,13 @@
 
 set -e
 
-ARSDK_MANIFEST_HASH="40d5d08ff37a43b0b2deb641cc899d5356163db7"
-ARSDK_VERSION="3_9_1"
+ARSDK_MANIFEST_HASH="b23aeb0e78ef017ba5b02d8905b1c12bb540c3bf"
+ARSDK_VERSION="3_10_0"
+PATCH_LEVEL="0"
 
 TMP_WS=`mktemp -d`
 CURRENT_DIR=`pwd`
-OUTPUT_ARCHIVE=${CURRENT_DIR}/arsdk_${ARSDK_VERSION}_stripped.tgz
+OUTPUT_ARCHIVE=${CURRENT_DIR}/arsdk_${ARSDK_VERSION}_p${PATCH_LEVEL}_stripped.tgz
 
 echo "Temporary workspace: $TMP_WS"
 echo "Output: $OUTPUT_ARCHIVE"
@@ -20,7 +21,6 @@ echo "y" | ./repo init -u https://github.com/Parrot-Developers/arsdk_manifests.g
 
 echo "Applying patches ..."
 cd ${TMP_WS}/build/dragon_build && git reset --hard && git apply ${CURRENT_DIR}/patch/dragon_disable_root_check.patch
-cd ${TMP_WS}/build/alchemy && git reset --hard && git apply ${CURRENT_DIR}/patch/alchemy_conditional_sse.patch
 cd $TMP_WS
 
 mv packages packages.git
