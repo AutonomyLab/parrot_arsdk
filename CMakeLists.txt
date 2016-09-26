@@ -18,6 +18,7 @@ set(ARDRONESDK3_PATH ${ARDRONESDK3_DEVEL_PATH}/src/ARSDKBuildUtils/out/arsdk-nat
 
 # 3.10.0 patch 0
 set(ARSDK_ARCHIVE arsdk_3_10_0_p0_stripped.tgz)
+set(ARSDK_ARCHIVE_MD5 409c4a1b92862fd6a2487f25eee259b1)
 
 # Determine the architecure of the host in a robust way
 execute_process(COMMAND python ${PROJECT_SOURCE_DIR}/script/get_arch.py OUTPUT_VARIABLE BUILD_HOST_ARCH)
@@ -30,7 +31,7 @@ include(ExternalProject)
 ExternalProject_Add(ARSDKBuildUtils
     DEPENDS ARSDK_MKDIR
     URL ${PROJECT_SOURCE_DIR}/sdk/${ARSDK_ARCHIVE}
-    URL_MD5 b0e8347e1cc2a605436cf39df6d0598c
+    URL_MD5 ${ARSDK_ARCHIVE_MD5}
     PREFIX ${ARDRONESDK3_DEVEL_PATH}
     CONFIGURE_COMMAND echo "No configure"
     # Setting TARGET_OS_FLAVOUR is experimental. The idea is to trick the build script to always pass the correct arch flags to all of underlying build scripts. This is useful when building the sdk for i386 targets inside a docker container which is running on a x86_64 host.
