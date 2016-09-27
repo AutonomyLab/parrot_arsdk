@@ -2,7 +2,7 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
+3.10.1 (2016-09-27)
 -----------
 * Update to SDK 3.10.1 (from 3.9.1) - patch 0
 * Changelog for SDK 3.10.1
