@@ -2,6 +2,26 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update to SDK 3.10.1 (from 3.9.1) - patch 0
+* Changelog for SDK 3.10.1
+    - Fixed events as list management
+    - Patched curl to avoid using clock_gettime on iOS
+    - Renamed internal MD5 symbol
+    - Fixed documentation generator
+* Changelog for SDK 3.10.0
+    - Disco support
+    - SkyController 2 support
+    - Mambo support
+    - Swing support
+    - new messages
+* Changlog for SDK 3.9.2
+    - Support of audio stream for Jumping evos
+    - new messages for Bebop and Bebop 2
+    - Alchemy updated (python3 needed)
+* Contributors: Mani Monajjemi
+
 3.9.1 (2016-07-25)
 ------------------
 * Parrot ARSDK 3.9 Changes
