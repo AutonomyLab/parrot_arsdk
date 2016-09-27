@@ -35,8 +35,7 @@ ExternalProject_Add(ARSDKBuildUtils
     PREFIX ${ARDRONESDK3_DEVEL_PATH}
     CONFIGURE_COMMAND echo "No configure"
     # Setting TARGET_OS_FLAVOUR is experimental. The idea is to trick the build script to always pass the correct arch flags to all of underlying build scripts. This is useful when building the sdk for i386 targets inside a docker container which is running on a x86_64 host.
-    # BUILD_COMMAND TARGET_OS_FLAVOUR=native-chroot TARGET_ARCH=${BUILD_HOST_ARCH} ./build.sh -p arsdk-native -t build-sdk -j --no-color
-    BUILD_COMMAND ./build.sh -p arsdk-native -t build-sdk -j --no-color
+    BUILD_COMMAND TARGET_OS_FLAVOUR=native-chroot TARGET_ARCH=${BUILD_HOST_ARCH} ./build.sh -p arsdk-native -t build-sdk -j --no-color
     INSTALL_COMMAND echo "No SDK install command"
     BUILD_IN_SOURCE 1
 )
