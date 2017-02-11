@@ -2,8 +2,18 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.10.1 (2016-09-27)
+Forthcoming
 -----------
+* Update to SDK 3.11.0
+  SDK Changelog:
+  - Fixed non-ack commands (camera orientation was always sent)
+  - Updated features list in the device controllers
+  - Old and deprecated Unix samples have been removed
+  - Coverity fixes
+* Contributors: Mani Monajjemi
+
+3.10.1 (2016-09-27)
+-------------------
 * Update to SDK 3.10.1 (from 3.9.1) - patch 0
 * Changelog for SDK 3.10.1
     - Fixed events as list management
