@@ -16,9 +16,9 @@ catkin_package(
 set(ARDRONESDK3_DEVEL_PATH ${CMAKE_CURRENT_BINARY_DIR}/arsdk)
 set(ARDRONESDK3_PATH ${ARDRONESDK3_DEVEL_PATH}/src/ARSDKBuildUtils/out/arsdk-native/staging/usr)
 
-# 3.11.0 patch 0
-set(ARSDK_ARCHIVE arsdk_3_11_0_p0_stripped.tgz)
-set(ARSDK_ARCHIVE_MD5 c6e04174ffdf736378c79ef6fd921265)
+# 3.12.6 patch 0
+set(ARSDK_ARCHIVE arsdk_3_12_6_p0_stripped.tgz)
+set(ARSDK_ARCHIVE_MD5 8a88eab4b26d35508746442432276a1e)
 
 # Determine the architecure of the host in a robust way
 execute_process(COMMAND python ${PROJECT_SOURCE_DIR}/script/get_arch.py OUTPUT_VARIABLE BUILD_HOST_ARCH)
@@ -45,11 +45,11 @@ add_custom_target(ARSDKPopulate ALL
   WORKING_DIRECTORY ${ARDRONESDK3_DEVEL_PATH}/src/ARSDKBuildUtils
   # Populate the build results into the devel space
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-  COMMAND cp -rp ./out/Unix-base/staging/usr/include/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  COMMAND cp -rp ./out/arsdk-native/staging/usr/include/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}
-  COMMAND cp -rp ./out/Unix-base/staging/usr/lib/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}
+  COMMAND cp -rp ./out/arsdk-native/staging/usr/lib/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_LIB_DESTINATION}/${PROJECT_NAME}
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/${PROJECT_NAME}
-  COMMAND cp -rp ./out/Unix-base/staging/usr/share/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/${PROJECT_NAME}
+  COMMAND cp -rp ./out/arsdk-native/staging/usr/share/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}/${PROJECT_NAME}
   #COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/${PROJECT_NAME}
   #COMMAND cp -rp ./out/Unix-base/staging/usr/bin/* ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/${PROJECT_NAME}
 )
