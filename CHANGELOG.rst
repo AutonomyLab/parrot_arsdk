@@ -2,6 +2,34 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update to SDK 3.12.6
+* SDK 3.12.6 Changelog:
+  - Fixed Android issues (versioning & link error on API19)
+* SDK 3.12.5 Changelog:
+  - Declare AccessoryState event as a MAP_ITEM type
+  - Handle list flags of AccessoryState and DebugSettingsInfo events directly in libARController.
+* SDK 3.12.4 Changelog:
+  - Use Python3 for all scripts
+  - Added new Mavlink mission items related to Sequoia
+  - Added an event to know if there is a Sequoia attached to the drone
+  - Renamed the iOS precompiled folders as arsdk-ios and arsdk-ios_sim*
+  - Removed appCompat-v7 from the dependencies of ARSDK3.
+  - Fixed direct connection to a Disco
+* SDK 3.12.3 Changelog:
+  - Use Python3 for all scripts
+  - Added new Mavlink mission items related to Sequoia
+  - Added an event to know if there is a Sequoia attached to the drone
+  - Renamed the iOS precompiled folders as arsdk-ios and arsdk-ios_sim
+* SDK 3.12.1 Changelog:
+  - Fixed reconnection issues on all Wifi products (when the reconnection appears less than 5 seconds after the disconnection).
+* SDK 3.12.0 Changelog:
+  - Fixed non-ack commands
+  - Simplify the way to create ftp managers from a device service
+  - Fixed crash when swapping apps using the MPP (Android)
+  - Fixed minSDKVersion and targetSDKVersion of libmux (Android)
+
 3.11.0 (2017-02-11)
 -------------------
 * Update to SDK 3.11.0
