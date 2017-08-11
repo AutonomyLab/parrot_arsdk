@@ -4,7 +4,7 @@ set -e
 
 ARSDK_MANIFEST_HASH="d7640c80ed7147971995222d9f4655932a904aa8"
 ARSDK_VERSION="3_12_6"
-PATCH_LEVEL="0"
+PATCH_LEVEL="1"
 
 TMP_WS=`mktemp -d`
 CURRENT_DIR=`pwd`
@@ -30,6 +30,9 @@ for f in `find ./packages.git -mindepth 1 -maxdepth 1 -type d`; do
   echo "Exporting $f ..."
   git archive --format=tar --prefix=`basename $f`/ --remote $f HEAD | (cd ./packages && tar xf - --exclude='TestBench/*')
 done
+
+echo "Applying package patches ..."
+git apply ${CURRENT_DIR}/patch/json-c_avoid_so_version.patch
 
 tar cfz $OUTPUT_ARCHIVE ./* --exclude "packages.git"
 cd $CURRENT_DIR
