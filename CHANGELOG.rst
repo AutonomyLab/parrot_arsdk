@@ -2,8 +2,17 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+3.12.6-1 (2017-08-12)
+---------------------
+
+* Merge pull request `#7 <https://github.com/AutonomyLab/parrot_arsdk/issues/7>`_ from thomas-bamford/indigo-devel
+  Patch json-c_avoid_so_version SDK 3.12.6
+* Patch json-c_avoid_so_version SDK 3.12.6
+* Contributors: Thomas Bamford
+
+3.12.6 (2017-07-06)
+-------------------
+
 * Update to SDK 3.12.6
 * SDK 3.12.6 Changelog:
   - Fixed Android issues (versioning & link error on API19)
