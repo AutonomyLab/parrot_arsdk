@@ -2,9 +2,10 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.12.6-1 (2017-08-12)
----------------------
-
+Forthcoming
+-----------
+* Change package versioning scheme to X.Y.ZP
+  3.12.6 (patch 0) to 3.12.60
 * Merge pull request `#7 <https://github.com/AutonomyLab/parrot_arsdk/issues/7>`_ from thomas-bamford/indigo-devel
   Patch json-c_avoid_so_version SDK 3.12.6
 * Patch json-c_avoid_so_version SDK 3.12.6
