@@ -2,8 +2,8 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+3.12.61 (2017-08-13)
+--------------------
 * Change package versioning scheme to X.Y.ZP
   3.12.6 (patch 0) to 3.12.60
 * Merge pull request `#7 <https://github.com/AutonomyLab/parrot_arsdk/issues/7>`_ from thomas-bamford/indigo-devel
