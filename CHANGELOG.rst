@@ -2,6 +2,15 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+3.14.0 (2018-07-02)
+--------------------
+* Update to SDK 3.14.0
+* SDK 3.14.0 Changelog:
+  - Added a way to update Sequoia through the drone
+  - Added Sequoia specific messages support
+* Remove TARGET_OS_FLAVOUR build flag in CMakeLists.txt
+* Contributors: Thomas Bamford
+
 3.13.10 (2018-03-19)
 --------------------
 * Update to SDK 3.13.1
