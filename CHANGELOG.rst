@@ -2,6 +2,28 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+3.14.0 (2018-07-02)
+--------------------
+* Update to SDK 3.14.0
+* SDK 3.14.0 Changelog:
+  - Added a way to update Sequoia through the drone
+  - Added Sequoia specific messages support
+* Remove TARGET_OS_FLAVOUR build flag in CMakeLists.txt
+* Contributors: Thomas Bamford
+
+3.13.10 (2018-03-19)
+--------------------
+* Update to SDK 3.13.1
+* SDK 3.13.1 Changelog:
+  - Fixed java feature wrongly set to null
+  - Fixed minicam not detected in discovery
+* SDK 3.13.0 Changelog:
+  - Support of Mambo with camera accessory
+  - Support of Parrot Bebop 2 Power, Bluegrass, Bebop Thermal
+  - Animation feature
+* Patch json-c_avoid_so_version SDK 3.13.1
+* Contributors: Thomas Bamford
+
 3.12.61 (2017-08-13)
 --------------------
 * Change package versioning scheme to X.Y.ZP
