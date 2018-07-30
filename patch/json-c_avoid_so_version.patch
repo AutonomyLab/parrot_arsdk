@@ -1,13 +1,22 @@
 diff --git a/packages/ARSDKTools/json-c/atom.mk b/packages/ARSDKTools/json-c/atom.mk
-index c3c5b34..23af0c2 100644
+index c3c5b34..5a3254b 100644
 --- a/packages/ARSDKTools/json-c/atom.mk
 +++ b/packages/ARSDKTools/json-c/atom.mk
-@@ -29,7 +29,7 @@ LOCAL_CFLAGS += -Wno-error
-
+@@ -28,7 +28,7 @@ endif
+ LOCAL_CFLAGS += -Wno-error
+ 
  # Remove so version for android shared libraries
- ifeq ("$(TARGET_OS_FLAVOUR)","android")
--LOCAL_AUTOTOOLS_PATCHES := 0001-android_avoid_so_version.patch
-+#LOCAL_AUTOTOOLS_PATCHES := 0001-android_avoid_so_version.patch
+-ifeq ("$(TARGET_OS_FLAVOUR)","android")
++#ifeq ("$(TARGET_OS_FLAVOUR)","android")
+ LOCAL_AUTOTOOLS_PATCHES := 0001-android_avoid_so_version.patch
  
  # If targetting an API level before 21, also apply the following patches
- ifneq ("$(firstword $(sort $(TARGET_ANDROID_APILEVEL) 21))", "21")
+@@ -36,7 +36,7 @@ ifneq ("$(firstword $(sort $(TARGET_ANDROID_APILEVEL) 21))", "21")
+ LOCAL_AUTOTOOLS_PATCHES += 0002-android_avoid_isinf.patch
+ endif
+ 
+-endif
++#endif
+ 
+ 
+ # Don't redefine alloc functions

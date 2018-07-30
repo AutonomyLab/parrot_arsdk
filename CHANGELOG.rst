@@ -2,6 +2,12 @@
 Changelog for package parrot_arsdk
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+3.14.1 (2018-07-29)
+--------------------
+* Update patch json-c_avoid_so_version
+* Patches libressl_avoid_version and libressl_avoid_version_patch
+* Contributors: Thomas Bamford
+
 3.14.0 (2018-07-02)
 --------------------
 * Update to SDK 3.14.0

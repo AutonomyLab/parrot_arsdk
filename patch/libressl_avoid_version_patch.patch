@@ -1,0 +1,19 @@
+diff --git a/packages/ARSDKTools/libressl/0006-libressl-2.2.1-avoid_version.patch b/packages/ARSDKTools/libressl/0006-libressl-2.2.1-avoid_version.patch
+new file mode 100644
+index 0000000..d675228
+--- /dev/null
++++ b/packages/ARSDKTools/libressl/0006-libressl-2.2.1-avoid_version.patch
+@@ -0,0 +1,13 @@
++diff --git a/ltmain.sh b/ltmain.sh
++index 5d29bd6..77a501d 100644
++--- a/ltmain.sh
+++++ b/ltmain.sh
++@@ -5091,7 +5091,7 @@ func_mode_link ()
++     inst_prefix_dir=
++     new_inherited_linker_flags=
++ 
++-    avoid_version=no
+++    avoid_version=yes
++     bindir=
++     dlfiles=
++     dlprefiles=

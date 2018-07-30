@@ -4,7 +4,7 @@ set -e
 
 ARSDK_MANIFEST_HASH="1ff5bdc5458627c12eb22e1dd1814cff25778f31"
 ARSDK_VERSION="3_14_0"
-PATCH_LEVEL="0"
+PATCH_LEVEL="1"
 
 TMP_WS=`mktemp -d`
 CURRENT_DIR=`pwd`
@@ -33,6 +33,8 @@ done
 
 echo "Applying package patches ..."
 git apply ${CURRENT_DIR}/patch/json-c_avoid_so_version.patch
+git apply ${CURRENT_DIR}/patch/libressl_avoid_version_patch.patch
+git apply ${CURRENT_DIR}/patch/libressl_avoid_version.patch
 
 tar cfz $OUTPUT_ARCHIVE ./* --exclude "packages.git"
 cd $CURRENT_DIR

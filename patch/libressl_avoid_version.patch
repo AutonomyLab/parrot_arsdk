@@ -1,0 +1,14 @@
+diff --git a/packages/ARSDKTools/libressl/atom.mk b/packages/ARSDKTools/libressl/atom.mk
+index 6689554..728501d 100644
+--- a/packages/ARSDKTools/libressl/atom.mk
++++ b/packages/ARSDKTools/libressl/atom.mk
+@@ -15,7 +15,8 @@ LOCAL_AUTOTOOLS_PATCHES := \
+ 	0002-libressl-2.2.1-android-compilation.patch \
+ 	0003-libressl-2.2.1-ios-compilation.patch \
+ 	0004-libressl-2.2.1-armv5.patch \
+-	0005-libressl-2.2.1-android_unified_headers.patch
++	0005-libressl-2.2.1-android_unified_headers.patch \
++	0006-libressl-2.2.1-avoid_version.patch
+ 
+ ifneq ("$(TARGET_OS)-$(TARGET_OS_FLAVOUR)","linux-native")
+ LOCAL_AUTOTOOLS_CONFIGURE_ARGS := \

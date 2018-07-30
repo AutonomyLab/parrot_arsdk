@@ -16,9 +16,9 @@ catkin_package(
 set(ARDRONESDK3_DEVEL_PATH ${CMAKE_CURRENT_BINARY_DIR}/arsdk)
 set(ARDRONESDK3_PATH ${ARDRONESDK3_DEVEL_PATH}/src/ARSDKBuildUtils/out/arsdk-native/staging/usr)
 
-# 3.14.0 patch 0
-set(ARSDK_ARCHIVE arsdk_3_14_0_p0_stripped.tgz)
-set(ARSDK_ARCHIVE_MD5 c0a52729f368e61839c9d410e74a2a7a)
+# 3.14.0 patch 1
+set(ARSDK_ARCHIVE arsdk_3_14_0_p1_stripped.tgz)
+set(ARSDK_ARCHIVE_MD5 f73099c420dab7c1ad29a01b1df3ca3c)
 
 # Determine the architecure of the host in a robust way
 execute_process(COMMAND python ${PROJECT_SOURCE_DIR}/script/get_arch.py OUTPUT_VARIABLE BUILD_HOST_ARCH)
